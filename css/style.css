@@ -130,6 +130,12 @@ h1{font-size:clamp(2.2rem,4.6vw,3.4rem);line-height:1.12;letter-spacing:-.02em;f
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
 .field textarea{min-height:140px;resize:vertical}
 
+.payment-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:34px 28px;max-width:400px;margin:0 auto;text-align:center}
+.payment-box img{width:220px;height:auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 auto 18px}
+.payment-box h3{font-size:1.05rem;margin-bottom:8px}
+.payment-note{font-size:.92rem}
+.payment-tip{font-size:.82rem;color:var(--muted);margin-top:10px}
+
 .site-footer{border-top:1px solid var(--line);background:var(--bg-soft)}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:32px;padding:56px 0 40px}
 .footer-brand p{color:var(--muted);font-size:.88rem;margin-top:12px;max-width:280px}

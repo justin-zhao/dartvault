@@ -135,6 +135,19 @@ h1{font-size:clamp(2.2rem,4.6vw,3.4rem);line-height:1.12;letter-spacing:-.02em;f
 .payment-box h3{font-size:1.05rem;margin-bottom:8px}
 .payment-note{font-size:.92rem}
 .payment-tip{font-size:.82rem;color:var(--muted);margin-top:10px}
+.pay-divider{display:flex;align-items:center;gap:14px;margin:24px 0;color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.pay-divider::before,.pay-divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.pay-form{max-width:560px;margin:0 auto}
+.pay-msg{display:none;background:rgba(229,72,77,.12);border:1px solid var(--red);color:#ff9296;border-radius:10px;padding:10px 14px;font-size:.86rem;margin-bottom:16px}
+.pay-tip{font-size:.82rem;color:var(--muted);margin-top:14px;text-align:center}
+.status-box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);max-width:560px;margin:0 auto;padding:40px 32px;text-align:center}
+.status-box.done{border-color:var(--green)}
+.status-box h2{font-size:1.4rem;margin-bottom:8px}
+.status-box.done h2{color:var(--green)}
+.status-detail{color:var(--muted);font-size:.9rem}
+.order-info{margin-top:22px;text-align:left;font-size:.9rem}
+.order-info div{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line)}
+.order-info span{color:var(--muted)}
 
 .site-footer{border-top:1px solid var(--line);background:var(--bg-soft)}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:32px;padding:56px 0 40px}

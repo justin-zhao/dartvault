@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Result | DartVault</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="10.5" cy="13.5" r="8"/>
+    <circle cx="10.5" cy="13.5" r="3.2"/>
+    <path d="M14.2 9.8L19 5"/>
+    <path d="M19 5l3-3-1 4.2z" fill="currentColor" stroke="none"/>
+  </symbol>
+</svg>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <svg aria-hidden="true"><use href="#i-logo"/></svg>
+      DartVault
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="products.html" class="btn btn-primary btn-small nav-cta">Shop Now</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Payment Result 支付结果</h1>
+      <p>Checking your order status with Alipay. 正在向支付宝查询订单状态。</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:40px">
+    <div class="container">
+      <div class="status-box" id="status-box">
+        <h2 id="status-title">查询中…</h2>
+        <p class="status-detail" id="status-detail">正在查询订单支付状态,请稍候。</p>
+        <div class="order-info" id="order-info"></div>
+        <p class="status-detail" style="margin-top:18px"><a href="index.html" style="color:var(--accent)">← Back to home 返回首页</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#i-logo"/></svg>DartVault</a>
+        <p>Premium darts and accessories for players of every level. Founded by league players, shipped worldwide.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="products.html?cat=steel">Steel Tip Darts</a></li>
+          <li><a href="products.html?cat=soft">Soft Tip Darts</a></li>
+          <li><a href="products.html?cat=boards">Dartboards</a></li>
+          <li><a href="products.html?cat=flights">Flights</a></li>
+          <li><a href="products.html">All Products</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><a href="mailto:11263711@qq.com">11263711@qq.com</a></li>
+          <li><a href="contact.html">Wholesale Inquiries</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> DartVault. All rights reserved.</span>
+      <span>Steel Tip · Soft Tip · Flights · Shafts · Boards</span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script>
+(function () {
+  var qs = new URLSearchParams(location.search);
+  var orderNo = qs.get('out_trade_no') || '';
+  if (!orderNo) { try { orderNo = sessionStorage.getItem('lastOrderNo') || ''; } catch (e) {} }
+  var box = document.getElementById('status-box');
+  var title = document.getElementById('status-title');
+  var detail = document.getElementById('status-detail');
+  var info = document.getElementById('order-info');
+  function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function row(k, v) { return '<div><span>' + esc(k) + '</span><strong>' + esc(v) + '</strong></div>'; }
+  function show(t, d, done) {
+    title.textContent = t;
+    detail.textContent = d;
+    if (done) box.classList.add('done');
+  }
+  if (!orderNo) {
+    show('未找到订单号', '请从支付页面重新发起付款。No order number found — please start again from the payment page.');
+    return;
+  }
+  var tries = 0;
+  function waiting() {
+    show('等待支付…', '订单尚未支付或支付宝正在确认中,本页会自动刷新状态。若您已完成付款,请稍等几秒。');
+  }
+  function poll() {
+    fetch('/api/pay/status?order_no=' + encodeURIComponent(orderNo)).then(function (r) {
+      return r.json().then(function (d) { return { ok: r.ok, d: d }; });
+    }).then(function (res) {
+      if (!res.ok) { show('查询失败', '状态查询出错(' + ((res.d && res.d.error) || 'error') + '),付款如已完成,卖家仍会收到邮件通知。'); return; }
+      var d = res.d;
+      if (d.found && (d.trade_status === 'TRADE_SUCCESS' || d.trade_status === 'TRADE_FINISHED')) {
+        show('支付成功 ✓', '支付已确认!确认邮件已自动发送给卖家,我们会尽快联系您安排发货。Payment confirmed — the seller has been notified by email.');
+        info.innerHTML = row('订单号 Order No.', orderNo) + row('商品 Product', d.subject || '') + row('金额 Amount', '¥ ' + (d.total_amount || '')) + row('支付宝交易号 Trade No.', d.trade_no || '');
+        return;
+      }
+      if (d.found && d.trade_status === 'TRADE_CLOSED') {
+        show('交易已关闭', '该订单已关闭或退款。This order was closed or refunded.');
+        return;
+      }
+      tries++;
+      if (tries > 40) {
+        show('仍在等待', '暂时未查询到支付结果。若您已付款,请稍后刷新本页;卖家以支付宝账单和邮件通知为准。');
+        return;
+      }
+      waiting();
+      setTimeout(poll, 3000);
+    }).catch(function () {
+      tries++;
+      if (tries > 40) { show('查询超时', '网络问题导致无法确认状态。若您已付款,卖家仍会收到支付宝回调邮件。'); return; }
+      setTimeout(poll, 5000);
+    });
+  }
+  waiting();
+  poll();
+})();
+</script>
+</body>
+</html>

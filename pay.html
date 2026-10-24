@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pay Online | DartVault</title>
+<meta name="description" content="Pay your DartVault order online with Alipay. Secure checkout via the official Alipay cashier.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://farflight.cc/pay.html">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="10.5" cy="13.5" r="8"/>
+    <circle cx="10.5" cy="13.5" r="3.2"/>
+    <path d="M14.2 9.8L19 5"/>
+    <path d="M19 5l3-3-1 4.2z" fill="currentColor" stroke="none"/>
+  </symbol>
+</svg>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <svg aria-hidden="true"><use href="#i-logo"/></svg>
+      DartVault
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="products.html" class="btn btn-primary btn-small nav-cta">Shop Now</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Pay Online 在线下单支付</h1>
+      <p>Enter your order details and complete payment at the official Alipay cashier — the exact amount, no manual transfer.<br>填写订单信息后跳转支付宝官方收银台付款,金额精确,支付成功卖家会自动收到邮件通知。</p>
+    </div>
+  </section>
+  <section class="section" style="padding-top:40px">
+    <div class="container">
+      <form id="pay-form" class="form-card pay-form" novalidate>
+        <div class="pay-msg" id="pay-msg" role="alert"></div>
+        <div class="field">
+          <label for="subject">Product 商品名称</label>
+          <input id="subject" name="subject" list="product-list" type="text" required autocomplete="off" placeholder="Select or type a product / 选择或输入商品">
+          <datalist id="product-list">
+            <option value="Falcon Steel Tip Darts – 22g"></option>
+            <option value="Viper Elite Steel Tip Darts – 24g"></option>
+            <option value="Neon Strike Soft Tip Darts – 18g"></option>
+            <option value="Compact Soft Tip Darts – 16g"></option>
+            <option value="Championship Bristle Dartboard – 18 Inch"></option>
+            <option value="Digital Pro Electronic Dartboard"></option>
+            <option value="Standard No.6 Flights – Sky"></option>
+            <option value="Pear Swirl Flight Pack"></option>
+            <option value="Aluminum Shafts – Medium"></option>
+            <option value="Nylon Pro Shafts – Short"></option>
+            <option value="Pro Dart Case – 3 Sets"></option>
+            <option value="Travel Vault Hard Case"></option>
+            <option value="Complete Dart Tool Kit"></option>
+            <option value="Wall Protector Surround"></option>
+            <option value="LED Board Light Ring"></option>
+            <option value="Magnetic Checkout Card"></option>
+            <option value="Custom Order / 其他商品"></option>
+          </datalist>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="amount">Amount (CNY) 金额(元)</label>
+            <input id="amount" name="amount" type="number" min="0.01" step="0.01" required placeholder="与卖家确认后的人民币金额">
+          </div>
+          <div class="field">
+            <label for="payerName">Your Name 付款人</label>
+            <input id="payerName" name="payerName" type="text" required maxlength="50">
+          </div>
+        </div>
+        <div class="field">
+          <label for="contact">WhatsApp / Email (optional 联系方式)</label>
+          <input id="contact" name="contact" type="text" maxlength="100">
+        </div>
+        <button class="btn btn-primary" type="submit" id="pay-btn">Continue to Alipay 去支付宝支付</button>
+        <p class="pay-tip">You will be redirected to the official Alipay cashier (alipay.com). 支付宝官方收银台,支持余额、银行卡与花呗。支付遇到问题?通过 <a href="contact.html" style="color:var(--accent)">Contact</a> 页面的 WhatsApp 联系我们。</p>
+      </form>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><svg aria-hidden="true"><use href="#i-logo"/></svg>DartVault</a>
+        <p>Premium darts and accessories for players of every level. Founded by league players, shipped worldwide.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="products.html?cat=steel">Steel Tip Darts</a></li>
+          <li><a href="products.html?cat=soft">Soft Tip Darts</a></li>
+          <li><a href="products.html?cat=boards">Dartboards</a></li>
+          <li><a href="products.html?cat=flights">Flights</a></li>
+          <li><a href="products.html">All Products</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><a href="mailto:11263711@qq.com">11263711@qq.com</a></li>
+          <li><a href="contact.html">Wholesale Inquiries</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> DartVault. All rights reserved.</span>
+      <span>Steel Tip · Soft Tip · Flights · Shafts · Boards</span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('pay-form');
+  var msg = document.getElementById('pay-msg');
+  var btn = document.getElementById('pay-btn');
+  var errMsgs = {
+    not_configured: '支付功能暂未开通,请联系卖家完成配置。Payment is not configured yet.',
+    invalid_amount: '金额格式不正确,请输入不小于 0.01 的数字。Invalid amount.',
+    missing_subject: '请填写商品名称。Please fill in the product name.',
+    bad_request: '请求格式错误,请刷新重试。Bad request.',
+    network: '网络错误,请重试。Network error, please retry.'
+  };
+  function showErr(key) {
+    msg.textContent = errMsgs[key] || (errMsgs.network + ' (' + key + ')');
+    msg.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Continue to Alipay 去支付宝支付';
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    msg.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Creating order 正在创建订单…';
+    fetch('/api/pay/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        subject: document.getElementById('subject').value,
+        amount: document.getElementById('amount').value,
+        payerName: document.getElementById('payerName').value,
+        contact: document.getElementById('contact').value
+      })
+    }).then(function (r) {
+      return r.json().then(function (d) { return { ok: r.ok, d: d }; });
+    }).then(function (res) {
+      if (!res.ok) { showErr(res.d && res.d.error); return; }
+      try { sessionStorage.setItem('lastOrderNo', res.d.orderNo); } catch (err) {}
+      var f = document.createElement('form');
+      f.action = res.d.action;
+      f.method = 'POST';
+      Object.keys(res.d.params).forEach(function (k) {
+        var i = document.createElement('input');
+        i.type = 'hidden';
+        i.name = k;
+        i.value = res.d.params[k];
+        f.appendChild(i);
+      });
+      document.body.appendChild(f);
+      f.submit();
+    }).catch(function () { showErr('network'); });
+  });
+})();
+</script>
+</body>
+</html>
